@@ -32,9 +32,7 @@ class AuthController {
         return view()->with('model', new LoginModel());
     }
 
-    public function authenticate(Request $request) {
-        $model = LoginModel::from($request->post());
-
+    public function authenticate(LoginModel $model) {
         if (!$model->validate()) {
             return view('auth.login', [
                 'model' => $model,
