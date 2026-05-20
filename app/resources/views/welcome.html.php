@@ -20,11 +20,19 @@
 
         <!-- Navigation -->
         <nav class="absolute top-0 right-0 p-6 flex space-x-4">
-            <a href="{{ app()->url->named('auth.login') }}"
-                class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-indigo-500">Log
-                in</a>
-            <a href="{{ app()->url->named('auth.register') }}"
-                class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-indigo-500">Register</a>
+            <?php
+            if (!empty($user)): ?>
+                <p class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-indigo-500">{{ $user->username }}</p>
+            <?php
+            else: ?>
+                <a href="{{ app()->url->named('auth.login') }}"
+                    class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-indigo-500">Log
+                    in</a>
+                <a href="{{ app()->url->named('auth.register') }}"
+                    class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-indigo-500">Register</a>
+            <?php
+            endif;
+            ?>
         </nav>
 
         <div class="max-w-7xl mx-auto p-6 lg:p-8">
