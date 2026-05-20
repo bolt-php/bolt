@@ -39,11 +39,15 @@ class AuthController {
             ]);
         }
 
-        if (!AuthService::authenticate($model)) {
+        $user = AuthService::authenticate($model);
+
+        if (empty($user)) {
             return view('auth.login', [
                 'model' => $model,
             ]);
         }
+
+        app()->session->set('user', $user->id);
 
         return response()->redirect('/');
     }
