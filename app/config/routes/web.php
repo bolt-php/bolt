@@ -1,8 +1,7 @@
 <?php
 
 use app\http\controllers\AuthController;
-use app\http\controllers\HomeController;
-use app\http\middleware\Auth;
+use app\http\middleware\RequireAuth;
 use framework\web\Routes;
 
 /**
@@ -18,7 +17,7 @@ Routes::group('/auth', function () {
     Routes::get('/login', [AuthController::class, 'login'], 'auth.login');
     Routes::post('/store', [AuthController::class, 'store'], 'auth.store');
     Routes::post('/', [AuthController::class, 'authenticate'], 'auth.validate');
-    Routes::get('/logout', [AuthController::class, 'logout'])->middleware(Auth::class);
+    Routes::get('/logout', [AuthController::class, 'logout'])->middleware(RequireAuth::class);
 });
 
 Routes::get('/media/{path}', 'FileController@index');
@@ -30,5 +29,6 @@ Routes::get('/media/{path}', 'FileController@index');
  * Routes::get('/', 'HomeController@index');
  */
 Routes::get('/', function () {
-    return view('welcome');
+    $user = request()->user;
+    return view('welcome')->with('user', $user);
 });

@@ -19,6 +19,6 @@ class AuthService {
             return false;
         }
 
-        return true;
+        return $user;
     }
 }

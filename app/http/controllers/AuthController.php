@@ -9,13 +9,15 @@ use framework\web\request\Request;
 
 class AuthController {
     public function register() {
-        return view();
+        return view()->with('user', new User());
     }
 
     public function store(Request $request) {
         $user = User::from($request->post());
 
+        
         if ($user->validate()) {
+            $user->password = password_hash($user->password, PASSWORD_DEFAULT);
             $user->save();
         }
         else {
@@ -30,20 +32,22 @@ class AuthController {
         return view()->with('model', new LoginModel());
     }
 
-    public function authenticate(Request $request) {
-        $model = LoginModel::from($request->post());
-
+    public function authenticate(LoginModel $model) {
         if (!$model->validate()) {
             return view('auth.login', [
                 'model' => $model,
             ]);
         }
 
-        if (!AuthService::authenticate($model)) {
+        $user = AuthService::authenticate($model);
+
+        if (empty($user)) {
             return view('auth.login', [
                 'model' => $model,
             ]);
         }
+
+        app()->session->set('user', $user->id);
 
         return response()->redirect('/');
     }

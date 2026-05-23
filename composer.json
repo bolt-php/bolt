@@ -23,7 +23,7 @@
     "require": {
         "php": ">=8.0",
         "bolt-php/web": ">=1.0.2",
-        "bolt-php/console": ">=1.0.2"
+        "bolt-php/console": ">=1.0.3"
     },
     "scripts": {
         "post-create-project-cmd": [
