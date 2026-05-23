@@ -3,10 +3,10 @@
 use app\components\DependencyContainer;
 use framework\Application;
 use framework\components\FileSystem;
+use framework\components\Logger;
 use framework\web\routing\Router;
 use framework\web\components\AssetManager;
 use framework\web\components\ErrorHandler;
-use framework\web\components\Logger;
 use framework\web\components\Session;
 use framework\web\components\UrlManager;
 use framework\web\components\WidgetManager;
@@ -30,3 +30,8 @@ $app->registerComponent('validator', Validator::class);
 $app->registerComponent('widgets', WidgetManager::class);
 $app->registerComponent('router', Router::class);
 $app->registerComponent('fs', FileSystem::class);
+
+/**
+ * Dynamically load all modules
+ */
+$app->scanModules();
