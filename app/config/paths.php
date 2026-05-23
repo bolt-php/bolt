@@ -12,4 +12,5 @@ return [
     'views' => $base_dir . DS . 'app' . DS . 'resources' . DS . 'views',
     'widgets' => $base_dir . DS . 'app' . DS . 'resources' . DS . 'widgets',
     'runtime' => $base_dir . DS . 'app' . DS . 'runtime',
+    'vendor' => $base_dir . DS . 'vendor',
 ];
