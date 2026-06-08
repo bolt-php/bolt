@@ -1,6 +1,6 @@
 <?php
 
-use app\http\middleware\Authenticator;
+use bolt\auth\http\middleware\Authenticator;
 use app\http\middleware\Csrf;
 use framework\web\Routes;
 
