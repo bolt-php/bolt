@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @var string $route
+ * @var string $method
+ */
+
 use framework\web\WebApplication;
 
 $app = WebApplication::getInstance($route, $method);
@@ -9,5 +14,6 @@ require_once __DIR__ . '/di.php';
 require_once __DIR__ . '/config.php';
 require_once __DIR__ . '/components.php';
 require_once __DIR__ . '/routes.php';
+require_once __DIR__ . '/registry.php';
 
 return $app;
