@@ -1,7 +1,5 @@
 <?php
 
-use app\http\controllers\AuthController;
-use app\http\middleware\RequireAuth;
 use framework\web\Routes;
 
 /**
