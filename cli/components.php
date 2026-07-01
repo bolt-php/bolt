@@ -2,8 +2,9 @@
 
 use app\components\DependencyContainer;
 use framework\Application;
-use framework\web\components\Logger;
+use framework\components\Logger;
 use framework\components\PathManager;
+use framework\components\Registry;
 use framework\components\Validator;
 
 /**
@@ -11,8 +12,13 @@ use framework\components\Validator;
  * 
  * @var Application $app
  */
-
+$app->registerComponent('registry', new Registry());
 $app->registerComponent('container', DependencyContainer::class);
 $app->registerComponent('logger', Logger::class);
 $app->registerComponent('path', PathManager::class);
 $app->registerComponent('validator', Validator::class);
+
+/**
+ * Dynamically load all modules
+ */
+$app->scanModules();

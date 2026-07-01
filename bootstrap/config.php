@@ -9,6 +9,7 @@ use framework\Application;
  * @var Application $app
  */
 use framework\components\Config;
+use framework\db\QueryBuilder;
 use framework\utils\helpers\DirectoryHelper;
 use framework\utils\helpers\DotenvHelper;
 
@@ -23,3 +24,5 @@ foreach (DirectoryHelper::listFiles(__DIR__ . '/../app/config') as $file) {
         $app->config->set(pathinfo($file, PATHINFO_FILENAME), $res);
     }
 }
+
+$app->di->scoped(QueryBuilder::class, $app->db);

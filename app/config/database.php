@@ -1,5 +1,6 @@
 <?php
 
+use framework\db\ActiveModel;
 use framework\db\drivers\MySqlDriver;
 use framework\db\QueryBuilder;
 
@@ -12,3 +13,5 @@ app()->registerComponent('db', function () {
         'database' => env('DB_DATABASE', 'test'),
     ]));
 });
+
+ActiveModel::setDb(app()->db);

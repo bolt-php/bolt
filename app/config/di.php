@@ -1,7 +1,9 @@
 <?php
 
 use framework\db\ActiveModel;
-use framework\models\Model;
+use framework\validation\Model;
+use framework\db\transformers\DateTimeTransformer;
+use framework\web\transformers\UploadedFileTransformer;
 
 app()->di->setFallback(function ($name, $type, $params) {
     if (isset($params[$name])) {
@@ -16,3 +18,6 @@ app()->di->setFallback(function ($name, $type, $params) {
 
     return null;
 });
+
+Model::registerTypeTransformer('DateTime', new DateTimeTransformer());
+Model::registerTypeTransformer(\framework\web\request\UploadedFile::class, new UploadedFileTransformer());
