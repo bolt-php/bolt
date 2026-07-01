@@ -1,6 +1,7 @@
 <?php
 
 use framework\Application;
+use framework\contracts\request\RequestInterface;
 use framework\web\request\Response;
 
 function app()
@@ -15,7 +16,7 @@ function response()
 
 function request()
 {
-    return app()->di->get(\framework\web\request\Request::class);
+    return app()->di->get(RequestInterface::class);
 }
 
 function view()
