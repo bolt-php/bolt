@@ -2,7 +2,7 @@
 
 namespace app\resources\widgets\forms\activeForm;
 
-use framework\models\Model;
+use framework\validation\Model;
 
 class ActiveFormContext
 {

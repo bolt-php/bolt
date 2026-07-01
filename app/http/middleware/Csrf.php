@@ -3,11 +3,11 @@
 namespace app\http\middleware;
 
 use Exception;
-use framework\web\request\Request;
+use framework\contracts\request\RequestInterface;
 
 class Csrf
 {
-    public function handle($next, Request $request)
+    public function handle($next, RequestInterface $request)
     {
         if ($request->method() != 'GET') {
             if (!\framework\web\utils\security\Csrf::validate($request->post('_csrf'))) {
